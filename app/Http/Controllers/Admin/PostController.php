@@ -114,9 +114,12 @@ class PostController extends Controller
         $post->content = $data['content'];
         $post->category_id = $data['category_id'];
         $post->published = isset($data['published']);
-        $post->update($data);
+        
+        $post->update();
         if(isset($data['tags'])){
             $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->sync([]);
         }
         return redirect()->route('admin.posts.show',$post->id); 
     }
