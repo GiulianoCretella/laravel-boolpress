@@ -1,7 +1,7 @@
 @extends('layouts.admin');
 
 @section('content')
-<form action="{{route('admin.posts.store')}}" method="POST">
+<form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="Title">Title</label>
@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <label for="image">Image Url</label>
-      <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" aria-describedby="image" placeholder="Enter image url" name="image" value="{{old('image')}}">
+      <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" aria-describedby="image" placeholder="Enter image url" name="image" value="{{old('image')}}">
       @error('image')
           <div class="alert alert-danger">{{$message}}</div>
       @enderror
@@ -53,4 +53,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Salva</button>
   </form>
+  <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+  <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 @endsection

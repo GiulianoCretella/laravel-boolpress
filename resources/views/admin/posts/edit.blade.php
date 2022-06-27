@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<form action="{{route('admin.posts.update',$post->id)}}" method="POST">
+<form action="{{route('admin.posts.update',$post->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
       <label for="image">Image Url</label>
-      <input type="text" class="form-control" id="image" aria-describedby="image"  name="image" value="{{$post->image}}">
+      <input type="file" class="form-control" id="image" aria-describedby="image"  name="image" value="{{$post->image}}">
     </div>
     <div class="form-group">
       <label for="content">Content</label>
@@ -52,4 +52,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+  <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 @endsection

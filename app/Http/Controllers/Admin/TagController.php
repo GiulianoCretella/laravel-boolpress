@@ -112,7 +112,7 @@ class TagController extends Controller
         $count = 1;
 
         while(Tag::where('slug',$slug)->first()){
-            $slug = Str::of($data['name'])->slug("-")."-{$count}";
+            $slug = Str::of($title)->slug("-")."-{$count}";
             $count++;
         };
         return $slug;

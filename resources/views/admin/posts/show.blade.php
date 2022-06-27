@@ -19,8 +19,8 @@
             <div class="card p-4">
                 <h4>{{$post->title}}</h4>
                 <p>{{$post->category ? $post->category->name : ''}}</p>
-                <img src="{{$post->image}}" alt="">
-                <p>{{$post->content}}</p>
+                <img src="{{asset("storage/{$post->image}")}}" alt="">
+                <p>{!! $post->content !!}</p>
                 @foreach ($post->tags as $item)
                     <span>{{$item->name}}</span>
                 @endforeach

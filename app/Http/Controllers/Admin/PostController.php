@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -16,6 +17,7 @@ class PostController extends Controller
         'content'=> 'required',
         'published'=>'sometimes|accepted',
         'category_id'=>'nullable|exists:categories,id',
+        'images'=>'nullable|images|mimes:jpeg,bmp,png,svg|max:2048',
         'tags'=>'nullable|exists:tags,id'
     ];
     /**
@@ -53,12 +55,15 @@ class PostController extends Controller
         $data = $request->all();
         $newPost = new Post();
         $newPost->title = $data['title'];
-        $newPost->image = $data['image'];
         $newPost->content = $data['content'];
         $newPost->category_id = $data['category_id'];
         $newPost->published = isset($data['published']);
         $slug = Str::of($data['title'])->slug("-");
         $newPost->slug = $this->getSlug($data['title']);
+        if(isset($data['image'])){
+            $path_image = Storage::put("uploads", $data['image']);
+            $newPost->image = $path_image;
+        }
         $newPost->save();
         if(isset($data['tags'])){
             $newPost->tags()->sync($data['tags']);

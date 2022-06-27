@@ -113,7 +113,7 @@ class CategoryController extends Controller
         $count = 1;
 
         while(Category::where('slug',$slug)->first()){
-            $slug = Str::of($data['name'])->slug("-")."-{$count}";
+            $slug = Str::of($title)->slug("-")."-{$count}";
             $count++;
         };
         return $slug;
