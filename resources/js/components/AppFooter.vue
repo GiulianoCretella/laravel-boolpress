@@ -1,7 +1,7 @@
 <template>
 <footer>
-    <div class="container">
-        <div class="row align-items-center">
+    <div class="container h-100">
+        <div class="row align-content-center h-100">
             <div class="col">
                 <a  href="/">Boolpress</a>
             </div>
@@ -27,6 +27,7 @@ export default {
 </script>
 <style lang="scss">
 footer{
+    height: 60px;
     color:#6DD663 ;
     background-color: #000d1d;
     a{

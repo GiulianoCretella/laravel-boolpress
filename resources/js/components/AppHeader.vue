@@ -2,17 +2,15 @@
 <header>
     <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <img :src="logo">
-    </a>
     <a class="navbar-brand" href="/">Boolpress</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/admin">Area Riservata</a>
+        <div v-for="(item,index) in menuItem" :key="index">
+         <router-link :to="{name : item.routeName}" class="navlink mx-2">{{item.label}}</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -23,21 +21,37 @@
 export default {
     name:'AppHeader',
     data(){
-        return{
-            'titolo':'Header',
-            'logo':'/img/logo.png'
-        }
+      return{
+        menuItem:[
+          {
+            label:'Home',
+            routeName:'home'
+          },
+          {
+            label:'Contact',
+            routeName:'contact'
+          },
+          {
+            label:'About',
+            routeName:'about'
+          },
+          {
+            label:'Posts',
+            routeName:'posts'
+          }
+        ]
+      }
     }
 }
 </script>
 <style lang="scss">
 header{
-    nav{
+  height: 60px;
     background-color: #021832;
-    a{
-        color:white;
-    }
-    }
+
+  .navlink{
+      color:white;
+  }
     
 }
 
