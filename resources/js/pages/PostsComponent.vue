@@ -5,7 +5,7 @@
         <div class="row justify-content-center" v-for="(post,index) in posts" :key="index">
             <div class="col-8 my-3">
                 <div class= "card">
-                    <div class="bg-dark p-2 rounded-top text-light text-center">
+                    <div class="title-box p-2 rounded-top text-light text-center">
                         <h4>{{post.title}}</h4>
                     </div>
                     <div class="p-2">
@@ -36,5 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.title-box{
+    background-color: #000f21
+}
 </style>

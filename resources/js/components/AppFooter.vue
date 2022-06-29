@@ -29,7 +29,7 @@ export default {
 footer{
     height: 60px;
     color:#6DD663 ;
-    background-color: #000d1d;
+    background-color: #000f21;
     a{
         color:#6DD663 ;
         padding: 3px;
