@@ -2276,7 +2276,8 @@ __webpack_require__.r(__webpack_exports__);
       var dataString = data.toString();
       var newDate = dataString.split(' ', 4);
       var lastDate = newDate.shift();
-      return newDate.join('-');
+      var yearPopped = newDate.pop();
+      return newDate.reverse().join(' - ') + ' - ' + yearPopped;
     }
   }
 });

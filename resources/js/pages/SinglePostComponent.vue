@@ -95,7 +95,8 @@ export default {
             let dataString = data.toString();
             const newDate = dataString.split(' ',4);
             let lastDate = newDate.shift();
-            return newDate.join('-');
+            let yearPopped = newDate.pop();
+            return newDate.reverse().join(' - ') + ' - ' + yearPopped;
         }
     }
 }
