@@ -10,7 +10,7 @@
                     <img  class="img-fluid" :src="'../storage/' + post.image" :alt="post.title">
                     <div class="p-2">
                         <p v-html="post.content"></p>
-                        <p>{{post.created_at}}</p>
+                        <p>Post del : {{convertData}}</p>
                         <ul>
                             <li v-for="(item,index) in post.tags" :key="index">
                                 <span>{{item.name}}</span>
@@ -88,6 +88,15 @@ export default {
         }).catch((error)=>{
             this.$router.push({name:'page-404'});
         });
+    },
+    computed:{
+        convertData(){
+            let data = new Date(this.post.created_at)
+            let dataString = data.toString();
+            const newDate = dataString.split(' ',4);
+            let lastDate = newDate.shift();
+            return newDate.join('-');
+        }
     }
 }
 </script>

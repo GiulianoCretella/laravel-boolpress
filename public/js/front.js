@@ -2269,6 +2269,15 @@ __webpack_require__.r(__webpack_exports__);
         name: 'page-404'
       });
     });
+  },
+  computed: {
+    convertData: function convertData() {
+      var data = new Date(this.post.created_at);
+      var dataString = data.toString();
+      var newDate = dataString.split(' ', 4);
+      var lastDate = newDate.shift();
+      return newDate.join('-');
+    }
   }
 });
 
@@ -3630,7 +3639,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("header", [
     _c("nav", { staticClass: "navbar navbar-expand-lg" }, [
-      _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "container" }, [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
           _vm._v("Boolpress"),
         ]),
@@ -3981,7 +3990,7 @@ var render = function () {
                     domProps: { innerHTML: _vm._s(_vm.post.content) },
                   }),
                   _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.post.created_at))]),
+                  _c("p", [_vm._v("Post del : " + _vm._s(_vm.convertData))]),
                   _vm._v(" "),
                   _c(
                     "ul",
