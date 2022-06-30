@@ -13,12 +13,12 @@ use App\Tag;
 class PostController extends Controller
 {
     protected $validation = [
-        'title'=> 'required|max:100',
-        'content'=> 'required',
-        'published'=>'sometimes|accepted',
-        'category_id'=>'nullable|exists:categories,id',
-        'images'=>'nullable|images|mimes:jpeg,bmp,png,svg|max:2048',
-        'tags'=>'nullable|exists:tags,id'
+        'title' => 'required|max:100',
+        'content' => 'required',
+        'published' => 'sometimes|accepted',
+        'category_id' => 'nullable|exists:categories,id',
+        'images' => 'nullable|images|mimes:jpeg,bmp,png,svg,webp|max:2048',
+        'tags' => 'nullable|exists:tags,id'
     ];
     /**
      * Display a listing of the resource.
@@ -27,8 +27,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts= Post::all();
-       return view('admin.posts.index',compact('posts'));
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -38,9 +38,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags= Tag::all();
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.create',compact('categories','tags'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -60,16 +60,16 @@ class PostController extends Controller
         $newPost->published = isset($data['published']);
         $slug = Str::of($data['title'])->slug("-");
         $newPost->slug = $this->getSlug($data['title']);
-        if(isset($data['image'])){
+        if (isset($data['image'])) {
             $path_image = Storage::put("uploads", $data['image']);
             $newPost->image = $path_image;
         }
         $newPost->save();
-        if(isset($data['tags'])){
+        if (isset($data['tags'])) {
             $newPost->tags()->sync($data['tags']);
         }
 
-        return redirect()->route('admin.posts.show',$newPost->id);
+        return redirect()->route('admin.posts.show', $newPost->id);
     }
 
     /**
@@ -80,7 +80,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show',compact('post'));
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -91,10 +91,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $tags= Tag::all();
+        $tags = Tag::all();
         $categories = Category::all();
-        $post=Post::findOrFail($id);
-        return view('admin.posts.edit', compact('post','categories','tags'));
+        $post = Post::findOrFail($id);
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -109,24 +109,28 @@ class PostController extends Controller
         $request->validate($this->validation);
         $data = $request->all();
         $post = Post::findOrFail($id);
-        if($post->title != $data['title']){
-            $post->title = $data['title']; 
+        if ($post->title != $data['title']) {
+            $post->title = $data['title'];
             $slug = Str::of($data['title'])->slug("-");
-            if($slug != $post->slug){
+            if ($slug != $post->slug) {
                 $post->slug = $this->getSlug($post->title);
             }
         }
         $post->content = $data['content'];
         $post->category_id = $data['category_id'];
         $post->published = isset($data['published']);
-        
+        if (isset($data['image'])) {
+            $path_image = Storage::put("uploads", $data['image']);
+            $post->image = $path_image;
+        }
+
         $post->update();
-        if(isset($data['tags'])){
+        if (isset($data['tags'])) {
             $post->tags()->sync($data['tags']);
         } else {
             $post->tags()->sync([]);
         }
-        return redirect()->route('admin.posts.show',$post->id); 
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -147,8 +151,8 @@ class PostController extends Controller
         $slug = Str::of($title)->slug("-");
         $count = 1;
 
-        while(Post::where('slug',$slug)->first()){
-            $slug = Str::of($title)->slug("-")."-{$count}";
+        while (Post::where('slug', $slug)->first()) {
+            $slug = Str::of($title)->slug("-") . "-{$count}";
             $count++;
         };
         return $slug;

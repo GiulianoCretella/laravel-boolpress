@@ -22,3 +22,5 @@ Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/{slug}', 'Api\PostController@show');
 //rotta per salvare i commenti
 Route::post('/comments', 'Api\CommentController@store');
+Route::get('/categories', 'Api\CategoryController@index');
+Route::get('/categories/{slug}', 'Api\CategoryController@show');

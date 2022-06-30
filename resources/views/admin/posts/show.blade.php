@@ -19,7 +19,7 @@
             <div class="card p-4">
                 <h4>{{$post->title}}</h4>
                 <p>{{$post->category ? $post->category->name : ''}}</p>
-                <img src="{{asset("storage/{$post->image}")}}" alt="">
+                <img src="{{asset("/storage/{$post->image}")}}" alt="">
                 <p>{!! $post->content !!}</p>
                 @foreach ($post->tags as $item)
                     <span>{{$item->name}}</span>
@@ -27,7 +27,8 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    {{-- @if (auth()->user()->id == $post->user_id) --}}
+        <div class="row justify-content-center">
         <div class="col-6 text-center my-1">
             <a class="btn btn-primary" href="{{route('admin.posts.edit',$post->id)}}">Modifica</a>
             <form action="{{route('admin.posts.destroy',$post->id)}}" method="POST">
@@ -35,9 +36,10 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Cancella</button>
             </form>
-
         </div>
     </div>
+    {{-- @endif --}}
+    
 </div>
    
 @endsection

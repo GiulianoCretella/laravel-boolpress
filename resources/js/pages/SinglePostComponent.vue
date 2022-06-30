@@ -74,6 +74,7 @@ export default {
             axios.post('/api/comments',this.formData)
             .then((response) => {
                 this.post.comments.push(response.data)
+                this.formData= '';
             })
             .catch((error) =>{
                 console.log(error);
