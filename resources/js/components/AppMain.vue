@@ -38,6 +38,7 @@ export default {
 </script>
 <style lang="scss">
 main{
+    background-image: url('/storage/uploads/sfondo.jpg');
     height: calc(100vh - 120px);
     overflow: auto;
 }
