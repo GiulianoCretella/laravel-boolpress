@@ -2183,22 +2183,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomeComponent',
   data: function data() {
@@ -6921,7 +6905,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "li[data-v-696945b6] {\n  list-style-type: none;\n  padding: 10px;\n}\nli a[data-v-696945b6] {\n  color: white;\n}\n.mine_container[data-v-696945b6] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  clear: both;\n}\n.item[data-v-696945b6] {\n  float: left;\n  width: 700px;\n  height: 400px;\n  position: relative;\n}\n.item img[data-v-696945b6] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.item .text[data-v-696945b6] {\n  position: absolute;\n  right: 20px;\n  bottom: 20px;\n  text-align: right;\n  color: white;\n}\n.thumbs[data-v-696945b6] {\n  float: left;\n  height: 400px;\n  background: #000;\n  position: relative;\n}\n.thumb[data-v-696945b6] {\n  height: 133.3333333333px;\n  opacity: 0.5;\n}\n.thumb img[data-v-696945b6] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.thumb.active[data-v-696945b6] {\n  border: 2px solid #ccc;\n  opacity: 1;\n}\n.prev[data-v-696945b6], .next[data-v-696945b6] {\n  width: 20px;\n  height: 20px;\n  margin: 10px 0;\n  border-radius: 50%;\n  background: #ccc;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  cursor: pointer;\n  z-index: 999;\n}\n.next[data-v-696945b6] {\n  bottom: 0;\n}\n.prev[data-v-696945b6]::after {\n  content: \"\";\n  width: 10px;\n  height: 10px;\n  border-top: 1px solid black;\n  border-right: 1px solid black;\n  display: block;\n  position: absolute;\n  top: 35%;\n  left: 50%;\n  transform: translate(-50%) rotate(-45deg);\n}\n.next[data-v-696945b6]::before {\n  content: \"\";\n  width: 10px;\n  height: 10px;\n  border-top: 1px solid black;\n  border-right: 1px solid black;\n  display: block;\n  position: absolute;\n  bottom: 35%;\n  left: 50%;\n  transform: translate(-50%) rotate(135deg);\n}", ""]);
+exports.push([module.i, "li[data-v-696945b6] {\n  background-color: #021832;\n  list-style-type: none;\n  padding: 10px;\n}\nli a[data-v-696945b6] {\n  color: white;\n}\n.item[data-v-696945b6] {\n  float: left;\n  width: 700px;\n  height: 400px;\n  position: relative;\n}\n.item img[data-v-696945b6] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.item .text[data-v-696945b6] {\n  position: absolute;\n  right: 20px;\n  bottom: 20px;\n  text-align: right;\n  font-weight: 700;\n  color: #ffffff;\n}\n.thumbs[data-v-696945b6] {\n  float: left;\n  height: 400px;\n  background: #000;\n  position: relative;\n}\n.thumbs .thumb[data-v-696945b6] {\n  height: 133.3333333333px;\n  opacity: 0.5;\n}\n.thumbs .thumb img[data-v-696945b6] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.thumb.active[data-v-696945b6] {\n  border: 2px solid #ccc;\n  opacity: 1;\n}\n.prev[data-v-696945b6], .next[data-v-696945b6] {\n  width: 20px;\n  height: 20px;\n  margin: 10px 0;\n  border-radius: 50%;\n  background: #ccc;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  cursor: pointer;\n  z-index: 999;\n}\n.next[data-v-696945b6] {\n  bottom: 0;\n}\n.prev[data-v-696945b6]::after {\n  content: \"\";\n  width: 10px;\n  height: 10px;\n  border-top: 1px solid black;\n  border-right: 1px solid black;\n  display: block;\n  position: absolute;\n  top: 35%;\n  left: 50%;\n  transform: translate(-50%) rotate(-45deg);\n}\n.next[data-v-696945b6]::before {\n  content: \"\";\n  width: 10px;\n  height: 10px;\n  border-top: 1px solid black;\n  border-right: 1px solid black;\n  display: block;\n  position: absolute;\n  bottom: 35%;\n  left: 50%;\n  transform: translate(-50%) rotate(135deg);\n}", ""]);
 
 // exports
 
@@ -39240,7 +39224,7 @@ var render = function () {
             _vm._l(_vm.categories, function (category, index) {
               return _c(
                 "li",
-                { key: index, staticClass: "my-2 bg-dark" },
+                { key: index, staticClass: "my-2" },
                 [
                   _c(
                     "router-link",
@@ -39309,15 +39293,27 @@ var render = function () {
                 },
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "text" }, [
-                _c("h3", [_vm._v(_vm._s(_vm.posts[_vm.indexActive].title))]),
-                _vm._v(" "),
-                _c("p", {
-                  domProps: {
-                    innerHTML: _vm._s(_vm.posts[_vm.indexActive].content),
-                  },
-                }),
-              ]),
+              _c(
+                "div",
+                { staticClass: "text" },
+                [
+                  _c("h3", [_vm._v(_vm._s(_vm.posts[_vm.indexActive].title))]),
+                  _vm._v(" "),
+                  _c("router-link", {
+                    staticClass: "text-light",
+                    attrs: {
+                      to: {
+                        name: "single-post",
+                        params: { slug: _vm.posts[_vm.indexActive].slug },
+                      },
+                    },
+                    domProps: {
+                      innerHTML: _vm._s(_vm.posts[_vm.indexActive].content),
+                    },
+                  }),
+                ],
+                1
+              ),
             ]),
             _vm._v(" "),
             _c(

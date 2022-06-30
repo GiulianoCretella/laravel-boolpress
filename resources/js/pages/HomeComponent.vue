@@ -4,29 +4,13 @@
       <div class="col-2">
         <nav>
           <ul class="p-0 my-2">
-            <li class="my-2 bg-dark" v-for="(category,index) in categories" :key="index">
+            <li class="my-2" v-for="(category,index) in categories" :key="index">
               <router-link :to="{ name:'category', params:{slug: category.slug} }" >{{category.name}}</router-link>
             </li>
           </ul>
         </nav>
       </div>
-      <!-- <div class="col-10">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active" v-for="post in posts" :key="post.id">
-              <img class="d-block w-100" :src="`/storage/${post.image}`" alt="First slide">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div> -->
+
       <div class="col-10">
         <div class="slider-wrapper" tabindex="0"
           @mouseover="stopScroll"
@@ -39,7 +23,7 @@
               <img :src="`/storage/${posts[indexActive].image}`" :alt="posts[indexActive].title" />
               <div class="text">
                   <h3>{{posts[indexActive].title}}</h3>
-                  <p v-html="posts[indexActive].content"></p>
+                  <router-link class="text-light" :to="{ name:'single-post', params:{slug: posts[indexActive].slug} }" v-html="posts[indexActive].content"></router-link>
               </div>
           </div>
 
@@ -120,59 +104,48 @@ export default {
 
 <style lang="scss" scoped>
   li{
-  list-style-type:none;
-  padding: 10px;
+    background-color: #021832;
+    list-style-type:none;
+    padding: 10px;
     a{
       color: white;
     }  
   }
-  .mine_container {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      clear: both;
-  }
 
   .item {
-      float: left;
-      width: 700px;
-      height: 400px;
-      position: relative;
-  }
-
-  .item img {
+    float: left;
+    width: 700px;
+    height: 400px;
+    position: relative;
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-  }
-
-  .item .text {
+    }
+    .text {
       position: absolute;
       right: 20px;
       bottom: 20px;
       text-align: right;
-      color: white;
+      font-weight: 700;
+      color: #ffffff;;
+    }
   }
-
   .thumbs {
-      float: left;
-      height: 400px;
-      background: #000;
-      position: relative;
-  }
-
-  .thumb {
+    float: left;
+    height: 400px;
+    background: #000;
+    position: relative;
+    .thumb {
       height: calc(400px / 3);
       opacity: 0.5;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
-
-  .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  }
-
   .thumb.active {
       border: 2px solid #ccc;
       opacity: 1;
